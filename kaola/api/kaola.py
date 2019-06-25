@@ -9,7 +9,7 @@ HOST = "https://openapi.kaola.com/router"
 
 class KaoLa(object):
 
-    def __init__(self, app_key, app_secret, v="1.0", access_token=None, timezone="UTC", sandbox=False):
+    def __init__(self, app_key, app_secret, v="1.0", access_token=None, sandbox=False):
         """
         初始化考拉API
         v1版本授权码固定
@@ -19,7 +19,6 @@ class KaoLa(object):
         self._app_key = app_key
         self._app_secret = app_secret
         self._v = v
-        self._tz = timezone
         self._host = TEST_HOST if sandbox else HOST
         if v == "1.0":
             self._access_token = access_token

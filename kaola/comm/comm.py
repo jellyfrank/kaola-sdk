@@ -12,7 +12,6 @@ class Comm(object):
         self._v = instance._v
         self._host = instance._host
         self._access_token = instance._access_token
-        self._tz = instance._tz
         return self
 
     def sign(self, data):

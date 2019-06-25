@@ -43,3 +43,14 @@ class Order(Comm):
             "page_size": page_size
         }
         return self.post(data=data)
+
+    def get_order(self,order_id):
+        """
+        获取指定的订单信息
+        参数：
+        order_id: 订单号
+        """
+        data = {
+            "method": "kaola.order.get",
+        }
+        return self.post(data=data)
