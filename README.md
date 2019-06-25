@@ -1,7 +1,12 @@
 # 网易考拉 Python SDK
 
+目前只支持1.0版本的接口
 
-## 开发中...
+## 安装
+
+```python
+pip install kaola
+```
 
 
 ## 使用方法

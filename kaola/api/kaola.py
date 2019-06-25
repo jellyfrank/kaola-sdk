@@ -2,6 +2,12 @@
 import requests
 from kaola.comm.comm import Comm
 from kaola.api.order import Order
+from kaola.api.delivery import Deliery
+from kaola.api.category import Category
+from kaola.api.basic import Basic
+from kaola.api.product import Product
+from kaola.api.vender import Vender
+from kaola.api.service import Service
 
 TEST_HOST = "http://openapi-test.kaola.com/router"
 HOST = "https://openapi.kaola.com/router"
@@ -43,3 +49,9 @@ class KaoLa(object):
 
     comm = Comm()
     order = Order()
+    delivery = Deliery()
+    category = Category()
+    basic = Basic()
+    product = Product()
+    vender = Vender()
+    service = Service()

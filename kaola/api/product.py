@@ -9,7 +9,7 @@ PRODUCT_STATUS = {
     "审核中": 2,
     "审核未通过": 3,
     "待上架(审核已通过)": 4,
-    "待上架(审核已通过)": 5,
+    "在售": 5,
     "下架": 6,
     "强制下架": 8,
     "待修改": 9,
@@ -240,3 +240,20 @@ class Product(Comm):
             "sku_key_list": sku_key_list
         }
         return self.post(data=data)
+
+    def update_outerid(self, field, key, outer_id):
+        """
+        更新商品outerid
+        参数：
+        field: 1表示修改商品外键 2 表示修改商品sku 外键 sku_outer_id
+        key: item key值
+        outer_id: item的outerid 
+        """
+        data = {
+            "method": "kaola.item.outerid.update",
+            "field": field,
+            "key": key,
+            "outer_id": outer_id
+        }
+
+        return self.post(data)
