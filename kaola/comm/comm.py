@@ -40,4 +40,4 @@ class Comm(object):
         使用post方法提交请求
         """
         data = self._get_sys_args(data)
-        return requests.post(self._host, data=data, json=json)
+        return requests.post(self._host, data=data, json=json).json()
