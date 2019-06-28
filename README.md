@@ -25,3 +25,4 @@ sandbox 是否是沙箱环境
 ## changelog
 
 * [0.0.3] 修复返回结果格式问题
+* [0.0.4] 更新access token获取机制

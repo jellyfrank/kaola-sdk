@@ -8,6 +8,7 @@ from kaola.api.basic import Basic
 from kaola.api.product import Product
 from kaola.api.vender import Vender
 from kaola.api.service import Service
+from hashlib import md5
 
 TEST_HOST = "http://openapi-test.kaola.com/router"
 HOST = "https://openapi.kaola.com/router"
@@ -32,20 +33,24 @@ class KaoLa(object):
             # [TODO] 2.0版本获取access_token且有时效限制
             pass
 
-    def get_authorization_code(self, redirect_uri):
+    def set_access_token(self, token):
         """
-        获取授权码
-        授权码将在回调的url的参数中，请在url进行解析获取
+        设置access_token
         """
-        url = f"https://oauth.kaola.com/oauth/authorize?response_type=code&client_id={self._app_key}&redirect_uri={redirect_uri}&state=1212&type=101"
-        requests.post(url)
+        self._access_token = token
 
-    def get_access_token(self, redirect_uri, code):
+    def check_authorization_state(self, redirect_uri, state):
         """
-        获取access_token
+        验证state是否合法
         """
-        url = f"https://oauth.kaola.com/oauth/token?grant_type=authorization_code&client_id={self._app_key}&redirect_uri={redirect_uri}&code={code}&state=1212&client_secret={self._app_secret}"
-        return requests.post(url)
+        return md5(redirect_uri.encode("utf-8")).hexdigest().upper()[5:12] == state
+
+    def generate_authorization_code_url(self, redirect_uri):
+        """
+        获取访问带有回调参数的authorization_code的URL
+        """
+        state = md5(redirect_uri.encode("utf-8")).hexdigest().upper()[5:12]
+        return f"https://oauth.kaola.com/oauth/token?grant_type=authorization_code&client_id={self._app_key}&redirect_uri={redirect_uri}&code={code}&state={state}&client_secret={self._app_secret}"
 
     comm = Comm()
     order = Order()
