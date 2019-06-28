@@ -38,6 +38,9 @@ class Comm(object):
     def post(self, data=None, json=None):
         """
         使用post方法提交请求
+        如果返回结果正确，则剥去最外一层的封装response
         """
         data = self._get_sys_args(data)
-        return requests.post(self._host, data=data, json=json).json()
+        result = requests.post(self._host, data=data, json=json).json()
+        response_name = f'{data["method"].replace(".","_")}_response'
+        return result[response_name] if response_name in result else result
