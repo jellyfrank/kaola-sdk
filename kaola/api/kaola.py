@@ -45,12 +45,21 @@ class KaoLa(object):
         """
         return md5(redirect_uri.encode("utf-8")).hexdigest().upper()[5:12] == state
 
+    def get_access_token(self, code, redirect_uri):
+        """
+        获取access_token
+        """
+        state = md5(redirect_uri.encode("utf-8")).hexdigest().upper()[5:12]
+        token_url = f"https://oauth.kaola.com/oauth/token?grant_type=authorization_code&client_id={self._app_key}&redirect_uri={redirect_uri}&code={code}&state={state}&client_secret={self._app_secret}"
+        res = requests.post(token_url).json()
+        return res.get("access_token", None)
+
     def generate_authorization_code_url(self, redirect_uri):
         """
         获取访问带有回调参数的authorization_code的URL
         """
         state = md5(redirect_uri.encode("utf-8")).hexdigest().upper()[5:12]
-        return f"https://oauth.kaola.com/oauth/token?grant_type=authorization_code&client_id={self._app_key}&redirect_uri={redirect_uri}&code={code}&state={state}&client_secret={self._app_secret}"
+        return f"https://oauth.kaola.com/oauth/authorize?response_type=code&client_id={self._app_key}&redirect_uri={redirect_uri}&state={state}&type=101"
 
     comm = Comm()
     order = Order()

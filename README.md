@@ -8,8 +8,28 @@
 pip install kaola
 ```
 
-
 ## 使用方法
+
+### 获取access_token
+
+1. 首先在[考拉开放平台](https://open.kaola.com)注册账号，注册通过后创建应用，给应用起个名字，获取到appkey和appsecret。
+2. 使用generate_authorization_code_url方法获取获取access code的url，然后访问这个url，用户授权后会自动跳转参数中的redirect_url
+   ```python
+   kaola = KaoLa(appkey, appsecret)
+   kaola.generate_authorization_code_url(redirect_url)
+   ```
+3. 在redirect_url的响应事件中先验证state的合法性：
+   ```python
+   kaola.check_authorization_state(redirect_url, state)
+   ```
+4. 第3步获取到的code，使用get_access_token方法获取token
+   ```python
+   kaola.get_access_token(code, shop.redirect_url)
+   ```
+
+## 调用API
+
+获取到access_token后，传给初始化函数，或使用set_token方法设置到已有KaoLa实例中。
 
 ```python
 from kaola.api.kaola import KaoLa
