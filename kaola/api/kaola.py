@@ -13,6 +13,9 @@ from hashlib import md5
 TEST_HOST = "http://openapi-test.kaola.com/router"
 HOST = "https://openapi.kaola.com/router"
 
+OAUTH_URL = "https://oauth.kaola.com"
+OAUTH_TEST_URL = "https://oauth-test.kaola.com"
+
 
 class KaoLa(object):
 
@@ -27,6 +30,7 @@ class KaoLa(object):
         self._app_secret = app_secret
         self._v = v
         self._host = TEST_HOST if sandbox else HOST
+        self._sandbox = True
         if v == "1.0":
             self._access_token = access_token
         else:
@@ -50,7 +54,7 @@ class KaoLa(object):
         获取access_token
         """
         state = md5(redirect_uri.encode("utf-8")).hexdigest().upper()[5:12]
-        token_url = f"https://oauth.kaola.com/oauth/token?grant_type=authorization_code&client_id={self._app_key}&redirect_uri={redirect_uri}&code={code}&state={state}&client_secret={self._app_secret}"
+        token_url = f"{ OAUTH_TEST_URL if self._sandbox else OAUTH_URL}/oauth/token?grant_type=authorization_code&client_id={self._app_key}&redirect_uri={redirect_uri}&code={code}&state={state}&client_secret={self._app_secret}"
         res = requests.post(token_url).json()
         return res.get("access_token", None)
 
@@ -59,7 +63,7 @@ class KaoLa(object):
         获取访问带有回调参数的authorization_code的URL
         """
         state = md5(redirect_uri.encode("utf-8")).hexdigest().upper()[5:12]
-        return f"https://oauth.kaola.com/oauth/authorize?response_type=code&client_id={self._app_key}&redirect_uri={redirect_uri}&state={state}&type=101"
+        return f"{OAUTH_TEST_URL if self._sandbox else OAUTH_URL}/oauth/authorize?response_type=code&client_id={self._app_key}&redirect_uri={redirect_uri}&state={state}&type=101"
 
     comm = Comm()
     order = Order()
