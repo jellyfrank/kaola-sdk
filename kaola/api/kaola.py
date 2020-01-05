@@ -14,7 +14,7 @@ TEST_HOST = "http://openapi-test.kaola.com/router"
 HOST = "https://openapi.kaola.com/router"
 
 OAUTH_URL = "https://oauth.kaola.com"
-OAUTH_TEST_URL = "https://oauth-test.kaola.com"
+OAUTH_TEST_URL = "http://oauth-test.kaola.com"
 
 
 class KaoLa(object):

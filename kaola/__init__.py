@@ -1,6 +1,6 @@
 
 __author__ = "kevinkong"
-__version__ = "0.0.8"
+__version__ = "0.0.9"
 
 import sys
 if sys.version_info < (3,6):

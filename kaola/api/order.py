@@ -54,5 +54,4 @@ class Order(Comm):
             "method": "kaola.order.get",
             "order_id": order_id
         }
-        print(data)
         return self.post(data=data)

@@ -17,7 +17,7 @@ class TestComm(unittest.TestCase):
         }
 
         self.assertEqual(kaola.comm.sign(
-            data), "7FB57593B5590324DC92407F2E9B6211")
+            data), "38CE64C36579F93799083D8A7F9CB33E")
 
 
 if __name__ == "__main__":
