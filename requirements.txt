@@ -2,3 +2,5 @@ requests
 coverage
 pytest
 python-coveralls
+pytz
+
