@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.com/block-cat/kaola-sdk.svg?branch=master)](https://travis-ci.com/block-cat/kaola-sdk)
+[![Coverage Status](https://coveralls.io/repos/github/block-cat/kaola-sdk/badge.svg?branch=master)](https://coveralls.io/github/block-cat/kaola-sdk?branch=master)
+[![PyPI](https://img.shields.io/pypi/v/kaola)](https://pypi.org/project/kaola/)
 
 # 网易考拉 Python SDK
 
