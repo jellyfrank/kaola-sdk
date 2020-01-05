@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/block-cat/kaola-sdk.svg?branch=master)](https://travis-ci.com/block-cat/kaola-sdk)
+
 # 网易考拉 Python SDK
 
 目前只支持1.0版本的接口
