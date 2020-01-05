@@ -1,6 +1,6 @@
 requests
 coverage
 pytest
-python-coveralls
+python-coveralls==2.9.1
 pytz
 
